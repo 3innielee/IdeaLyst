@@ -16,9 +16,9 @@
       </div>
       <div class="container">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary"><a href="{% url 'planner:day' day %}">&#9664;</a></button>
+          <button type="button" class="btn btn-secondary"><a href="{% url 'planner:day' yesterday %}">&#9664;</a></button>
           <button type="button" class="btn btn-secondary">{{ day }}</button>
-          <button type="button" class="btn btn-secondary"><a href="#">&#9654;</a></button>
+          <button type="button" class="btn btn-secondary"><a href="{% url 'planner:day' tmrw %}">&#9654;</a></button>
         </div>
       </div>
     </div>
