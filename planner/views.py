@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . import models
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from datetime import datetime, timedelta
 
 # Create your views here.
@@ -23,3 +23,11 @@ class DayView(TemplateView):
             context['valid'] = False
 
         return context
+
+class EventCreateView(CreateView):
+    fields = ("title", "day", "start_time", "end_time", "location", "note")
+    model = models.Event
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(EventCreateView, self).form_valid(form)
