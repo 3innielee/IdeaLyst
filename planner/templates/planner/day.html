@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titleblock %}IdeaLyst{% endblock %}
+
+{% block bodyblock %}
+  {% if valid is False %}
+    <div class="row" align="center">
+      <div class="container">
+        <h1>Your Agenda</h1>
+      </div>
+    </div>
+  {% else %}
+    <div class="row" align="center">
+      <div class="container">
+        <h1>Your Agenda</h1>
+      </div>
+      <div class="container">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary"><a href="{% url 'planner:day' day %}">&#9664;</a></button>
+          <button type="button" class="btn btn-secondary">{{ day }}</button>
+          <button type="button" class="btn btn-secondary"><a href="#">&#9654;</a></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" align="center">
+      <div class="container">
+        {% for event in events %}
+          <button type="button" class="btn btn-primary btn-lg btn-block">
+            <b>{{event.title}}</b><br>{{ event.start_time }}-{{ event.end_time }} at {{ event.location.name }}
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
